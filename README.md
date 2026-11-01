@@ -85,3 +85,9 @@ Other EVGA CLC models use Asetek pumps too and will likely work, but they haven'
 ## Disclaimer
 
 Provided as is, with no warranty. The script only restarts EVGA's own software and resets one USB device. It doesn't touch firmware, drivers or BIOS settings, and the pump keeps running normally throughout.
+
+## Support
+
+If this fixed it for you, you can buy me a coffee:
+
+[![Support me on Ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/ctrlp)
