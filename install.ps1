@@ -78,7 +78,9 @@ Log 'Done'
 '@ | Set-Content -Path $ScriptPath -Encoding UTF8
 
 # --- Create the wake task -------------------------------------------------
-$filter = "*[System[Provider[@Name='Microsoft-Windows-Power-Troubleshooter'] and EventID=1]]"
+# Trigger on either wake event: Power-Troubleshooter 1 isn't always logged,
+# Kernel-Power 107 ("resumed from sleep") is. If both fire, the task only runs once.
+$filter = "*[System[(Provider[@Name='Microsoft-Windows-Power-Troubleshooter'] and EventID=1) or (Provider[@Name='Microsoft-Windows-Kernel-Power'] and EventID=107)]]"
 $action = "powershell.exe -NoProfile -WindowStyle Hidden -ExecutionPolicy Bypass -File `"$ScriptPath`""
 
 schtasks /Create /TN $TaskName /SC ONEVENT /EC System /MO $filter /TR $action /RL HIGHEST /F | Out-Null
